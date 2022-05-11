@@ -10,7 +10,6 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-
     Widget titleSection = Container(
       padding: EdgeInsets.all(10),
       child: Row(children: [
@@ -32,8 +31,35 @@ class MyApp extends StatelessWidget {
       ]),
     );
 
+    Widget buttonSection = Container(
+      padding: const EdgeInsets.all(8),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          _buildColumnbutton("COMMENT", Icons.comment, Colors.blue),
+          _buildColumnbutton("SHARE", Icons.share, Colors.blue),
+        ],
+      ),
+    );
+
+    Widget descriptionSection = Container(
+      padding: const EdgeInsets.all(32),
+      child: const Text(
+          "Dans un monde fantastique semblable à la Terre et peuplé de créatures plus étranges"
+          "les unes que les autres, un petit garçon à la force herculéenne et doté d’une queue de singe croise un jour la route"
+          " d’une jeune fille. Celle-ci s’est lancée à la recherche de sept mystérieuses boules de cristal."
+          " Car il est dit que quiconque les réunira pourra appeler le dragon sacré et exaucer son voeu le plus cher."
+          " En chemin, ce duo d’aventuriers peu commun se heurte à un cochon transformiste usant de ses dons pour kidnapper"
+          " les jeunes filles d’un village, puis à un vagabond solitaire adepte des arts martiaux que la simple vue d’une jeune"
+          " femme suffit à tétaniser sur place. Ce n’est que le début d’une grande aventure riche en péripéties, en humour"
+          " et en combats extraordinaires...",
+          style: TextStyle(fontSize: 16),
+          softWrap: true),
+    );
+
     return MaterialApp(
       title: 'Flutter POC',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -53,9 +79,28 @@ class MyApp extends StatelessWidget {
             title: const Text("Mes mangas"),
           ),
           body: Column(children: [
-            titleSection
+            titleSection,
+            buttonSection,
+            descriptionSection,
           ]) // This trailing comma makes auto-formatting nicer for build methods.
           ),
+    );
+  }
+
+  Column _buildColumnbutton(String label, IconData icon, Color color) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Container(
+            padding: const EdgeInsets.only(bottom: 8),
+            child: Icon(icon, color: color)),
+        Text(label,
+            style: TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.w400,
+              color: color,
+            )),
+      ],
     );
   }
 }
